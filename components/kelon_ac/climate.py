@@ -6,7 +6,7 @@ from esphome.const import CONF_ID
 kelon_ns = cg.esphome_ns.namespace("kelon_ac")
 KelonAC = kelon_ns.class_("KelonAC", climate.Climate, cg.Component)
 
-# ESPhome 2026: CLIMATE_SCHEMA 已被移除，必须使用新的 schema 注册方式
+# ESPhome 2026: CLIMATE_SCHEMA 已被移除，必须使用 CLIMATE_SCHEMA_BASE
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(KelonAC),
     cv.Optional("current_temperature_sensor"): cv.use_id(cg.Sensor),
