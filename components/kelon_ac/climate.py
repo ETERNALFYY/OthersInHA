@@ -6,10 +6,11 @@ from esphome.const import CONF_ID
 kelon_ns = cg.esphome_ns.namespace("kelon_ac")
 KelonAC = kelon_ns.class_("KelonAC", climate.Climate, cg.Component)
 
-CONFIG_SCHEMA = climate.CLIMATE_SCHEMA.extend({
+# ESPhome 2026: CLIMATE_SCHEMA 已被移除，必须使用新的 schema 注册方式
+CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(KelonAC),
     cv.Optional("current_temperature_sensor"): cv.use_id(cg.Sensor),
-})
+}).extend(climate.CLIMATE_SCHEMA_BASE)
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
