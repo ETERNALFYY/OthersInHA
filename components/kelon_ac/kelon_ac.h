@@ -30,15 +30,14 @@ class KelonAC : public climate::Climate, public Component {
 
  protected:
   void control(const climate::ClimateCall &call) override {
-    if (call.get_mode().has_value()) {
+    if (call.get_mode().has_value())
       this->mode = *call.get_mode();
-    }
-    if (call.get_target_temperature().has_value()) {
+
+    if (call.get_target_temperature().has_value())
       this->target_temperature = *call.get_target_temperature();
-    }
-    if (call.get_fan_mode().has_value()) {
+
+    if (call.get_fan_mode().has_value())
       this->fan_mode = *call.get_fan_mode();
-    }
 
     // TODO: 在这里发送 IR 指令
     // send_kelon_ir(this->mode, this->target_temperature, this->fan_mode);
